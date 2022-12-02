@@ -53,9 +53,11 @@ namespace FileApplication {
            return newFishList1.Count;
        }
       static void Main(string[] args) {
-          
+        string dataLocation = "";
+        //dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_1/sampleData.txt";
+        dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_1/aocData.txt"; 
             try {
-                using (StreamReader sr = new StreamReader("/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_1/data.txt")) {
+                using (StreamReader sr = new StreamReader(dataLocation)) {
                     string data;
                     
                     double currentCalories = 0;
