@@ -15,8 +15,8 @@ namespace FileApplication {
         dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_2/aocData.txt"; 
 
         //problem part
-        int partNum = 1;
-        //int partNum = 2;
+        //int partNum = 1;
+        int partNum = 2;
 
             try {
                 using (StreamReader sr = new StreamReader(dataLocation)) {
@@ -24,12 +24,7 @@ namespace FileApplication {
                     string data;
                     
                     while ((data = sr.ReadLine()) != null) {
-                        Console.WriteLine("data: {0}", data);
-                        // string[] subs = line.Split(" ");
-                        // //separate per endpoint
-                        // string opponent = subs[0];
-                        // string mine = subs[1];                        
-
+                        //Console.WriteLine("data: {0}", data);
                         //part 1 solution
                         if (partNum == 1) {
                             //find the combination
@@ -64,47 +59,39 @@ namespace FileApplication {
 
                         //part 2 solution
                         } else if (partNum == 2) {                                
-                            // //set the first three as the top 3
-                            // //add them to a list and sort ascending
-                            // if (elfNum <= 3) {
-                            //     if (elfNum == 1) {
-                            //         calories[0] = currentCalories;
-                            //     } else if (elfNum == 2) {
-                            //         calories[1] = currentCalories;
-                            //     } else if (elfNum == 3) {
-                            //         calories[2] = currentCalories;
-                            //     }
-                            
-                            // } else {
-                            //     // foreach (double cal in calories) {
-                            //     //     Console.WriteLine("cal: {0}", cal);
-                            //     // }
-
-                            //     bool update = false;
-                            //     for (int cnt = 0; cnt < calories.Length; cnt++){
-                            //         double calData = calories[cnt];
-                            //         if (currentCalories.CompareTo(calData) == 1) {
-                            //             update = true;
-                            //         } 
-                            //     }  
-
-                            //     if (update) {
-                            //             //sort array and replace lowest with new data
-                            //             Array.Sort(calories);
-                            //             calories[0] = currentCalories;
-                            //     }                                   
-                            // }                           
+                           //find the combination
+                            //rock; lost + scissor; 0 + 3
+                            if (data.CompareTo("A X") == 0) {
+                                score += 3;
+                            //rock; draw + rock; 3 + 1
+                            } else if (data.CompareTo("A Y") == 0) {
+                                score += 4;
+                            //rock; won + paper; 6 + 2
+                            } else if (data.CompareTo("A Z") == 0) {
+                                score += 8;
+                            //paper; lost + rock; 0 + 1
+                            } else if (data.CompareTo("B X") == 0) {
+                                score += 1;
+                            //paper; draw + paper; 3 + 2
+                            } else if (data.CompareTo("B Y") == 0) {
+                                score += 5;
+                            //paper; won + scissor; 6 + 3
+                            } else if (data.CompareTo("B Z") == 0) {
+                                score += 9;
+                            //scissor; lost + paper; 0 + 2
+                            } else if (data.CompareTo("C X") == 0) {
+                                score += 2;
+                            //scissor; draw + scissor; 3 + 3
+                            } else if (data.CompareTo("C Y") == 0) {
+                                score += 6;
+                            //scissor; won + rock; 6 + 1
+                            } else if (data.CompareTo("C Z") == 0) {
+                                score += 7;
+                            }  
                         }
                     }
 
-                    if (partNum == 1) {
-                        Console.WriteLine("score: {0}", score);
-                    } else if (partNum == 2) {                        
-                        // foreach (double cal in calories) {
-                        //     maxCalories += cal;
-                        // }
-                        // Console.WriteLine("Total calories of top 3 bags: {0}", maxCalories);
-                    }
+                    Console.WriteLine("score: {0}", score);
                 }                    
 
             } catch (Exception e) {
