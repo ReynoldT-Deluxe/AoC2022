@@ -16,8 +16,8 @@ namespace FileApplication
             string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_3/aocData.txt"; 
 
             //problem part
-            int partNum = 1;
-            //int partNum = 2;
+            //int partNum = 1;
+            int partNum = 2;
 
             try
             {
@@ -25,6 +25,8 @@ namespace FileApplication
                 {
                     int sumOfPriorities = 0;
                     string data;
+                    int groupCnt = 0;
+                    System.Text.StringBuilder[] groupData = new System.Text.StringBuilder[3];
 
                     while ((data = sr.ReadLine()) != null)
                     {
@@ -64,7 +66,19 @@ namespace FileApplication
                         }
                         else if (partNum == 2)
                         {
+                            //Console.WriteLine("groupCnt: {0}", groupCnt);
+                            //get data                   
+                            System.Text.StringBuilder compartmentData = new System.Text.StringBuilder(data);
+                            groupData[groupCnt] = compartmentData;
 
+                            if (groupCnt != 2) {
+                                groupCnt++;
+                            } else if (groupCnt == 2) {
+                                //process the data
+                                sumOfPriorities += calculateGroupPriority(groupData);
+                                //restart the group
+                                groupCnt = 0;
+                            }
                         }
                     }
 
@@ -101,6 +115,30 @@ namespace FileApplication
                 if (compartmentData.CompareTo(upperCase[cnt2 - 27]) == 0)
                 {
                     return cnt2;
+                }
+            }
+
+            //defaults to return 0
+            return 0;
+        }
+
+        public static int calculateGroupPriority(System.Text.StringBuilder[] groupData) {
+            //Console.WriteLine("Calculate group priority");
+            //iterate thru first data
+            for (int cnt1 = 0; cnt1 < groupData[0].Length; cnt1++) {
+                //Console.WriteLine("group 0: {0}", groupData[0][cnt1]);
+                //iterate thru second data
+                for (int cnt2 = 0; cnt2 < groupData[1].Length; cnt2++) {
+                    //Console.WriteLine("group 1: {0}", groupData[1][cnt2]);
+                    if (groupData[0][cnt1].CompareTo(groupData[1][cnt2]) == 0) {
+                        //iterate thru third data
+                        for (int cnt3 = 0; cnt3 < groupData[2].Length; cnt3++) {
+                            //Console.WriteLine("group 2: {0}", groupData[2][cnt3]);
+                            if (groupData[0][cnt1].CompareTo(groupData[2][cnt3]) == 0) {
+                                return calculatePriority(groupData[0][cnt1]);
+                            }
+                        }
+                    }
                 }
             }
 
