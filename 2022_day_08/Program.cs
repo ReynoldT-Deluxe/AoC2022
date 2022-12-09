@@ -12,8 +12,8 @@ namespace FileApplication
         static void Main(string[] args)
         {
             //data to use
-            string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_xx/sampleData.txt";
-            //string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_xx/aocData.txt"; 
+            string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_x/sampleData.txt";
+            //string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_x/aocData.txt"; 
 
             //problem part
             int partNum = 1;
@@ -23,17 +23,14 @@ namespace FileApplication
             {
                 using (StreamReader sr = new StreamReader(dataLocation))
                 {
-                    string data;
-                    string output = "";
-
                     while ((data = sr.ReadLine()) != null)
                     {
                         //Console.WriteLine("data: {0}", data);
                         //part 1 solution
                         if (partNum == 1)
                         {
-
-                            //part 2 solution
+                           
+                        //part 2 solution
                         }
                         else if (partNum == 2)
                         {
