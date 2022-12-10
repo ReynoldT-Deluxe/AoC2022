@@ -13,11 +13,7 @@ namespace FileApplication
         {
             //data to use
             //string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_05/sampleData.txt";
-            string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_05/aocData.txt"; 
-
-            //problem part
-            int partNum = 1;
-            //int partNum = 2;
+            string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_05/aocData.txt";
 
             int maxStacks = 0;
             int stackPositions = 0;
@@ -98,37 +94,19 @@ namespace FileApplication
 
             //get data bottom up for each stack
             //for the maximum stack rows, we'll assume that it is quadruple the max move count
-            string[,] crateStackArray = convertCrateDataToCrateStackArray(crateData, maxMoves, stackPositions, maxStacks);
+            string[,] crateStackArray9000 = convertCrateDataToCrateStackArray(crateData, maxMoves, stackPositions, maxStacks);
+            string[,] crateStackArray9001 = convertCrateDataToCrateStackArray(crateData, maxMoves, stackPositions, maxStacks);
 
-            if (partNum == 1)
-            {
-                //process the move array against the crate stack array
-                crateStackArray = processMovementsCrateMover9000(crateStackArray, moveArray, moveCount);
+            //part 1 solution
+            //process the move array against the crate stack array
+            processMovementsCrateMover9000(crateStackArray9000, moveArray, moveCount, maxMoves, maxStacks);
 
-                string topCrates = "";
-                //get the top stack data
-                for (int col = 0; col < maxStacks; col++) {
-                    int dataIndex = int.Parse(crateStackArray[0,col]);
-                    topCrates += crateStackArray[dataIndex,col];
-                }
+            //part 2 solution
+            //process the move array against the crate stack array
+            processMovementsCrateMover9001(crateStackArray9001, moveArray, moveCount, maxMoves, maxStacks);
 
-                Console.WriteLine("top crates: {0}", topCrates);
-
-                // for (int row = 0; row < (stackPositions * 4); row++)
-                // {
-                //     for (int col = 0; col < maxStacks; col++)
-                //     {
-                //         Console.Write(crateStackArray[row, col] + " ");
-                //     }
-                //     Console.WriteLine();
-                // }
-
-                //part 2 solution
-            }
-            else if (partNum == 2)
-            {
-
-            }
+            Console.WriteLine("top crates for CrateMoker9000: {0}", getTopCratesList(crateStackArray9000, maxStacks));
+            Console.WriteLine("top crates for CrateMoker9001: {0}", getTopCratesList(crateStackArray9001, maxStacks));
 
         }
 
@@ -243,7 +221,7 @@ namespace FileApplication
             // Console.WriteLine("stackPositions: {0}", stackPositions);
             // Console.WriteLine("maxStacks: {0}", maxStacks);
             // Console.WriteLine("maxMoves: {0}", maxMoves);
-            
+
             string[,] crateStackArray = new string[(maxMoves * 4), maxStacks];
 
             //set count data on row 0
@@ -298,27 +276,27 @@ namespace FileApplication
             return crateStackArray;
         }
 
-        public static string[,] processMovementsCrateMover9000(string[,] crateStackArray, int[,] moveArray, int moveCount)
+        public static string[,] processMovementsCrateMover9000(string[,] crateStackArray, int[,] moveArray, int moveCount, int maxMoves, int maxStacks)
         {
             //move array cols = crates to move, from stack location, to stack location
             for (int moveIndex = 0; moveIndex < moveCount; moveIndex++)
             {
-                int createsToMove = moveArray[moveIndex, 0];
+                int cratesToMove = moveArray[moveIndex, 0];
                 int stackFrom = moveArray[moveIndex, 1];
                 int stackFrom2 = stackFrom - 1;
                 int stackTo = moveArray[moveIndex, 2];
                 int stackTo2 = stackTo - 1;
-                // Console.WriteLine("createsToMove: {0}", createsToMove);
+                // Console.WriteLine("cratesToMove: {0}", cratesToMove);
                 // Console.WriteLine("stackFrom: {0}", stackFrom);
                 // Console.WriteLine("stackTo: {0}", stackTo);
                 int currentFromCount = int.Parse(crateStackArray[0, stackFrom2]);
                 int currentToCount = int.Parse(crateStackArray[0, stackTo2]);
 
                 int fromIndex = currentFromCount;
-                    int toIndex = currentToCount;
+                int toIndex = currentToCount;
 
                 //update the stacks bottom up
-                for (int createIndex = 0; createIndex < createsToMove; createIndex++)
+                for (int createIndex = 0; createIndex < cratesToMove; createIndex++)
                 {
                     //get data from last index
                     string fromData = crateStackArray[currentFromCount, stackFrom2];
@@ -329,9 +307,9 @@ namespace FileApplication
                     //set data to blank
                     crateStackArray[currentFromCount, stackFrom2] = " ";
 
-                    // for (int row = 0; row < 62; row++)
+                    // for (int row = 0; row < ((maxMoves * 4)); row++)
                     // {
-                    //     for (int col = 0; col < 9; col++)
+                    //     for (int col = 0; col < (maxStacks); col++)
                     //     {
                     //         Console.Write(crateStackArray[row, col] + " ");
                     //     }
@@ -345,24 +323,24 @@ namespace FileApplication
                     // Console.WriteLine("stackTo2: {0}", stackTo2);
                     crateStackArray[toIndex, stackTo2] = fromData;
 
-                    // for (int row = 0; row < 62; row++)
+                    // for (int row = 0; row < ((maxMoves * 4)); row++)
                     // {
-                    //     for (int col = 0; col < 9; col++)
+                    //     for (int col = 0; col < (maxStacks); col++)
                     //     {
                     //         Console.Write(crateStackArray[row, col] + " ");
                     //     }
                     //     Console.WriteLine();
                     // }
 
-                    //update create stack array counts
+                    //update crate stack array counts
                     currentFromCount--;
                     currentToCount++;
                     crateStackArray[0, stackFrom2] = currentFromCount.ToString();
                     crateStackArray[0, stackTo2] = currentToCount.ToString();
 
-                    // for (int row = 0; row < 62; row++)
+                    // for (int row = 0; row < ((maxMoves * 4)); row++)
                     // {
-                    //     for (int col = 0; col < 9; col++)
+                    //     for (int col = 0; col < (maxStacks); col++)
                     //     {
                     //         Console.Write(crateStackArray[row, col] + " ");
                     //     }
@@ -372,6 +350,76 @@ namespace FileApplication
             }
 
             return crateStackArray;
+        }
+
+        public static string[,] processMovementsCrateMover9001(string[,] crateStackArray, int[,] moveArray, int moveCount, int maxMoves, int maxStacks)
+        {
+            //move array cols = crates to move, from stack location, to stack location
+            for (int moveIndex = 0; moveIndex < moveCount; moveIndex++)
+            {
+                int cratesToMove = moveArray[moveIndex, 0];
+                int stackFrom = moveArray[moveIndex, 1];
+                int stackTo = moveArray[moveIndex, 2];
+                int stackFrom2 = stackFrom - 1;
+                int stackTo2 = stackTo - 1;
+                int currentFromCount = int.Parse(crateStackArray[0, stackFrom2]);
+                int currentToCount = int.Parse(crateStackArray[0, stackTo2]);
+
+                //default to same as index if crates to move is 1
+                int fromIndex = currentFromCount;
+                int toIndex = currentToCount + 1;
+
+                if (cratesToMove > 1)
+                {
+                    fromIndex = currentFromCount - (cratesToMove - 1);
+                }
+
+                //update the stacks
+                for (int crateIndex = 0; crateIndex < cratesToMove; crateIndex++)
+                {
+                    //get data from first index
+                    string fromData = crateStackArray[fromIndex, stackFrom2];
+
+                    //set data to blank
+                    crateStackArray[fromIndex, stackFrom2] = " ";
+                    fromIndex++;
+
+                    //add data to new stack 
+                    crateStackArray[toIndex, stackTo2] = fromData;
+                    toIndex++;
+
+                    // for (int row = 0; row < ((maxMoves * 4)); row++)
+                    // {
+                    //     for (int col = 0; col < (maxStacks); col++)
+                    //     {
+                    //         Console.Write(crateStackArray[row, col] + " ");
+                    //     }
+                    //     Console.WriteLine();
+                    // }
+
+                    //update crate stack array counts
+                    currentFromCount--;
+                    currentToCount++;
+                    crateStackArray[0, stackFrom2] = currentFromCount.ToString();
+                    crateStackArray[0, stackTo2] = currentToCount.ToString();
+                }
+            }
+
+            return crateStackArray;
+        }
+
+        public static string getTopCratesList(string[,] crateStackArray, int maxStacks)
+        {
+
+            string topCrates = "";
+            //get the top stack data
+            for (int col = 0; col < maxStacks; col++)
+            {
+                int dataIndex = int.Parse(crateStackArray[0, col]);
+                topCrates += crateStackArray[dataIndex, col];
+            }
+
+            return topCrates;
         }
     }
 }
