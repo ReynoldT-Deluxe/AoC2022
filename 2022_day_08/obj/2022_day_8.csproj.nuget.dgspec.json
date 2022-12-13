@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_8/2022_day_8.csproj": {}
+    "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_08/2022_day_8.csproj": {}
   },
   "projects": {
-    "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_8/2022_day_8.csproj": {
+    "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_08/2022_day_8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_8/2022_day_8.csproj",
+        "projectUniqueName": "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_08/2022_day_8.csproj",
         "projectName": "2022_day_8",
-        "projectPath": "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_8/2022_day_8.csproj",
+        "projectPath": "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_08/2022_day_8.csproj",
         "packagesPath": "/Users/T452172/.nuget/packages/",
-        "outputPath": "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_8/obj/",
+        "outputPath": "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_08/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/T452172/.nuget/NuGet/NuGet.Config"
