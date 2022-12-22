@@ -13,8 +13,8 @@ namespace FileApplication
         static void Main(string[] args)
         {
             //data to use
-            //string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_07/sampleData.txt";
-            string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_07/aocData.txt";
+            string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_07/sampleData.txt";
+            //string dataLocation = "/Users/T452172/Documents/Personal/Advent_of_Code/2022/AoC2022/2022_day_07/aocData.txt";
 
             //problem part
             int partNum = 1;
@@ -40,12 +40,12 @@ namespace FileApplication
             {
                 List<FileSystemData> totalledFileByDirectory = calculateTotalFileSizeByDirectory(fileSystemData);
 
-                foreach (FileSystemData fsd in totalledFileByDirectory)
-                {
-                    Console.WriteLine("level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
-                        fsd.level, fsd.name, fsd.type, fsd.directory, fsd.size);
-                }
-                Console.WriteLine("");
+                // foreach (FileSystemData fsd in totalledFileByDirectory)
+                // {
+                //     Console.WriteLine("level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
+                //         fsd.level, fsd.name, fsd.type, fsd.directory, fsd.size);
+                // }
+                // Console.WriteLine("");
 
                 //get the initial list of directories with size at most 100000
                 List<FileSystemData> directoryWithAtMost100K = get100KList(totalledFileByDirectory);
@@ -53,11 +53,11 @@ namespace FileApplication
                 //get list of directories from the fileSystemData
                 List<FileSystemData> directoryList = getDirectoryList(fileSystemData);
 
-                foreach (FileSystemData fsd in directoryList)
-                {
-                    Console.WriteLine("level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
-                        fsd.level, fsd.name, fsd.type, fsd.directory, fsd.size);
-                }
+                // foreach (FileSystemData fsd in directoryList)
+                // {
+                //     Console.WriteLine("level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
+                //         fsd.level, fsd.name, fsd.type, fsd.directory, fsd.size);
+                // }
 
                 //calculate the aggregate directory totals based on the heirarchy and add to the 100K list
                 aggregateData(totalledFileByDirectory, directoryList, directoryWithAtMost100K);
@@ -256,7 +256,7 @@ namespace FileApplication
 
             for (int index = higestLevel; index >= 1; index--)
             {
-                Console.WriteLine("currentLevel: {0}", index);
+                //Console.WriteLine("currentLevel: {0}", index);
                 //get totalledFileByDirectory based on a level
                 List<FileSystemData> levelTotalledFileByDirectory = getTotalledFileByDirectoryByLevel(totalledFileByDirectory, index);
 
@@ -293,7 +293,7 @@ namespace FileApplication
                                     //updatedSize = size + parentTotalData.size;                                    
                                     //update the parent
                                     parentTotalData.size += size;
-                                    Console.WriteLine("updatedSize: {0}", parentTotalData.size);
+                                    //Console.WriteLine("updatedSize: {0}", parentTotalData.size);
                                     break;
                                 }
                             }
@@ -304,9 +304,9 @@ namespace FileApplication
                 //update the directoryWithAtMost100K based on the latest totalledFileByDirectory
                 foreach (FileSystemData fsd in totalledFileByDirectory)
                 {
-                    Console.WriteLine("update");
-                    Console.WriteLine("fsd -> level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
-                         fsd.level, fsd.name, fsd.type, fsd.directory, fsd.size);
+                    // Console.WriteLine("update");
+                    // Console.WriteLine("fsd -> level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
+                    //      fsd.level, fsd.name, fsd.type, fsd.directory, fsd.size);
 
                     bool recordFound = false;
 
@@ -341,11 +341,11 @@ namespace FileApplication
                         }
                     }
 
-                    foreach (FileSystemData d100k in directoryWithAtMost100K)
-                    {
-                        Console.WriteLine("d100k -> level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
-                            d100k.level, d100k.name, d100k.type, d100k.directory, d100k.size);
-                    }
+                    // foreach (FileSystemData d100k in directoryWithAtMost100K)
+                    // {
+                    //     Console.WriteLine("d100k -> level: {0} \t name: {1} \t type: {2} \t directory: {3} \t size {4}",
+                    //         d100k.level, d100k.name, d100k.type, d100k.directory, d100k.size);
+                    // }
                 }
             }
         }
